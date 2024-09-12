@@ -35,9 +35,13 @@ Requirements:
 To run this project, you will need:
 
 Python 3.6+
+
 Flask: For the web interface
+
 Pandas: For data processing and analysis
+
 Matplotlib: For plotting stock price trends
+
 yfinance: For fetching stock data from Yahoo Finance
 
 To install the required packages, run the following line in your terminal:
