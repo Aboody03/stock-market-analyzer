@@ -44,4 +44,5 @@ Matplotlib: For plotting stock price trends
 yfinance: For fetching stock data from Yahoo Finance
 
 To install the required packages, run the following line in your terminal:
+
 pip install -r requirements.txt
