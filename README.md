@@ -32,7 +32,6 @@ Based on the financial indicators, the tool provides a Buy, Hold, or Sell recomm
 The tool plots the stock's closing prices over time, overlaying the moving averages to provide visual insight into stock performance. The graph is displayed on the web interface.
 
 Requirements:
-To run this project, you will need:
 
 Python 3.6+
 
