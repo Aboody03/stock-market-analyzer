@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Analysis for {{ ticker }}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Inline Custom CSS -->
+    <style>
+        /* General body styling */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            background: linear-gradient(135deg, #f4f7fa, #e2ebf0);
+        }
+
+        /* Header styling with background color */
+        header {
+            background-color: #007bff;
+            width: 100%;
+            padding: 40px 0;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            color: #f0f0f0;
+        }
+
+        /* Footer styling with background color */
+        footer {
+            background-color: #007bff;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            font-size: 0.9em;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Main content area */
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            width: 100%;
+            margin: 60px auto;
+            text-align: center;
+        }
+
+        /* Stock advice styling */
+        .stock-advice ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .stock-advice li {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .stock-advice li span.buy {
+            color: green;
+            font-weight: 600;
+        }
+
+        .stock-advice li span.sell {
+            color: red;
+            font-weight: 600;
+        }
+
+        .stock-advice li span.hold {
+            color: orange;
+            font-weight: 600;
+        }
+
+        .stock-advice li span.key {
+            font-weight: bold;
+        }
+
+        .recommendation {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with background color -->
+    <header>
+        <h1>Stock Market Analyzer</h1>
+        <p>Analyze stock trends and get personalized investment advice</p>
+    </header>
+
+    <!-- Main content area (centered stock advice and chart) -->
+    <div class="container">
+        <!-- Chart display -->
+        <div class="text-center">
+            <img src="{{ url_for('static', filename='stock_plot.png') }}" alt="Stock Plot" class="img-fluid" style="max-width: 100%; height: auto;">
+        </div>
+
+        <!-- Investment advice -->
+        <div class="stock-advice">
+            <h2>Investment Advice for {{ ticker }}</h2>
+            <ul>
+                <li><span class="key">Current Price:</span> ${{ current_price | round(2) }}</li>
+                
+                <!-- Loop through dynamically calculated signals and apply colors -->
+                {% for signal in signals %}
+                <li><span class="{{ signal.type }}">{{ signal.text }}</span></li>
+                {% endfor %}
+                
+                <li><span class="key">Beta:</span> {{ beta | round(2) }} 
+                    (A beta greater than 1 indicates higher volatility compared to the market, 
+                    while a beta less than 1 indicates lower volatility.)
+                </li>
+            </ul>
+        </div>
+
+        <!-- General Consensus Recommendation -->
+        <div class="recommendation">
+            Final Recommendation: {{ final_recommendation }}
+        </div>
+
+        <!-- Display the hold time and expected increase for "Buy" recommendation -->
+        {% if final_recommendation == 'Buy' %}
+        <div class="hold-info">
+            <p>Recommended holding period: {{ hold_period }}</p>
+            <p>{{ expected_increase }}</p>
+        </div>
+        {% endif %}
+
+        <a href="/" class="btn btn-secondary">Go Back</a>
+    </div>
+
+    <!-- Footer with background color -->
+    <footer>
+        <p>&copy; 2024 Stock Market Analyzer</p>
+    </footer>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
