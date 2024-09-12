@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market Analyzer</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Inline Custom CSS -->
+    <style>
+        /* Importing a custom font from Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        /* General body styling */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            background: linear-gradient(135deg, #f4f7fa, #e2ebf0); /* Light gradient background */
+        }
+
+        /* Header styling with background color */
+        header {
+            background-color: #007bff; /* Primary blue background */
+            width: 100%;
+            padding: 40px 0;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            color: #f0f0f0;
+        }
+
+        /* Main content area (flexible height to push footer down) */
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            margin: 60px auto; /* Add vertical margin for spacing */
+            text-align: center; /* Center the form content */
+        }
+
+        /* Form styling */
+        label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-control {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid #ced4da;
+            padding: 10px;
+            font-size: 1rem;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 8px;
+            border: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        /* Error message styling */
+        .error-message {
+            color: red;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Footer styling with background color */
+        footer {
+            background-color: #007bff; /* Same blue as header */
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            font-size: 0.9em;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 30px;
+            }
+
+            button {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with background color -->
+    <header>
+        <h1>Stock Market Analyzer</h1>
+        <p>Analyze stock trends and get personalized investment advice</p>
+    </header>
+    
+    <!-- Main content area (centered form) -->
+    <div class="container">
+        <!-- Display error message if exists -->
+        {% if error_message %}
+        <div class="error-message">{{ error_message }}</div>
+        {% endif %}
+        
+        <form action="/stock" method="POST">
+            <div class="form-group">
+                <label for="ticker">Enter Stock Ticker:</label>
+                <input type="text" id="ticker" name="ticker" class="form-control" placeholder="e.g., AAPL" required>
+            </div>
+            <div class="form-group">
+                <label for="period">Select Data Period:</label>
+                <select id="period" name="period" class="form-control">
+                    <option value="1mo">1 Month</option>
+                    <option value="3mo">3 Months</option>
+                    <option value="6mo">6 Months</option>
+                    <option value="1y">1 Year</option>
+                    <option value="3y">3 Years</option>
+                    <option value="5y">5 Years</option>
+                    <option value="max">All Time</option>
+                </select>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Analyze Stock</button>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Footer with background color -->
+    <footer>
+        <p>&copy; 2024 Stock Market Analyzer</p>
+    </footer>
+    
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
