@@ -2,6 +2,12 @@ The Stock Market Analyzer is a Python-based tool that fetches, processes, and an
 
 The tool uses web scraping to fetch real-time stock data from Yahoo Finance and processes it to generate detailed financial insights and visualizations. It provides a final recommendation, such as how long to hold a stock and expected price increases if the recommendation is to Buy.
 
+
+
+https://github.com/user-attachments/assets/a07e6ef2-f35a-4add-8a3f-501e419db77f
+
+
+
 Project Features:
 1) Stock Data Fetching: Pulls historical stock data for a user-specified time period using Yahoo Finance.
 2) Technical Analysis: Computes key financial indicators like:
