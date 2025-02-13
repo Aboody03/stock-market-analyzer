@@ -45,6 +45,8 @@ Flask: For the web interface
 
 Pandas: For data processing and analysis
 
+NumPy: For numerical computations and array manipulations
+
 Matplotlib: For plotting stock price trends
 
 yfinance: For fetching stock data from Yahoo Finance
